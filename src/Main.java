@@ -8,14 +8,19 @@ class Dictionary {
     {
         dictionary = new TreeMap<>();
     }
-
-    public void addLang(String lang) {
+    public boolean addLang(String lang) {
+        lang=lang.toLowerCase();
+        if (dictionary.containsKey(lang)){
+            return false;
+        }
         dictionary.put(lang, new TreeMap<>());
+        return true;
     }
-
     public void printLang() {
+        int count=1;
         for (String lang : dictionary.keySet()) {
-            System.out.println(lang);
+            System.out.println(count++ + ")" +lang);
+
         }
     }
 }
@@ -23,7 +28,10 @@ class Dictionary {
 public class Main {
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
-        dictionary.addLang("ru");
+        System.out.println(dictionary.addLang("RU"));
+        System.out.println(dictionary.addLang("ru"));
+        System.out.println(dictionary.addLang("en"));
+        System.out.println(dictionary.addLang("fr"));
         dictionary.printLang();
     }
 }
